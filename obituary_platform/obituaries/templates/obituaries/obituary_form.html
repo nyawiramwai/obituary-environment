@@ -1,0 +1,111 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Submit Obituary</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to right, #ff7e5f, #feb47b);
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+
+        h1 {
+            margin-bottom: 30px;
+            color: #333;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            color: #666;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 0 auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 120px;
+            resize: none;
+        }
+
+        button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: #ff7e5f;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #feb47b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Submit Obituary</h1>
+        <form method="post" action="{% url 'submit_obituary' %}">
+            {% csrf_token %}
+            
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="date_of_birth">Date of Birth:</label>
+                <input type="date" id="date_of_birth" name="date_of_birth" required>
+            </div>
+            <div class="form-group">
+                <label for="date_of_death">Date of Death:</label>
+                <input type="date" id="date_of_death" name="date_of_death" required>
+            </div>
+            <div class="form-group">
+                <label for="content">Content:</label>
+                <textarea id="content" name="content" required></textarea>
+            </div>
+            
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <script src="{% static 'js/validation.js' %}"></script>
+</body>
+</html>
